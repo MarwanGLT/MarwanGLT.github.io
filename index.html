@@ -393,6 +393,38 @@
     font-size: 0.9rem;
   }
 
+  /* fleches du carrousel projets */
+  .projects-carousel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .carousel-btn {
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid #33ff66;
+    background-color: #0d0f0d;
+    color: #33ff66;
+    font-family: inherit;
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+
+  .carousel-btn:hover {
+    background-color: #33ff66;
+    color: #0d0f0d;
+  }
+
+  .carousel-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+    background-color: #0d0f0d;
+    color: #33ff66;
+  }
+
   /* parcours */
   .timeline li {
     list-style: none;
@@ -735,7 +767,9 @@
 <section id="projets" class="reveal">
   <div class="container">
     <h2 class="title">Projets</h2>
-    <div class="projects-track">
+    <div class="projects-carousel">
+    <button class="carousel-btn" id="projPrev" type="button" aria-label="Projets précédents">&lsaquo;</button>
+    <div class="projects-track" id="projTrack">
       <a class="project-slide" href="projet-grapheneos.html">
         <img src="img/grapheneos.svg" alt="Smartphones sécurisés GrapheneOS" style="object-fit: contain; object-position: center" />
         <span class="project-slide-label">Smartphones GrapheneOS</span>
@@ -780,6 +814,8 @@
         />
         <span class="project-slide-label">Prestashop</span>
       </a>
+    </div>
+    <button class="carousel-btn" id="projNext" type="button" aria-label="Projets suivants">&rsaquo;</button>
     </div>
   </div>
 </section>
@@ -882,4 +918,26 @@
   });
 
 
+  // carrousel des projets : fleches gauche / droite
+  var projTrack = document.getElementById("projTrack");
+  var projPrev = document.getElementById("projPrev");
+  var projNext = document.getElementById("projNext");
+
+  function updateProjButtons() {
+    var maxScroll = projTrack.scrollWidth - projTrack.clientWidth;
+    projPrev.disabled = projTrack.scrollLeft <= 2;
+    projNext.disabled = projTrack.scrollLeft >= maxScroll - 2;
+  }
+
+  projPrev.addEventListener("click", function () {
+    projTrack.scrollBy({ left: -projTrack.clientWidth * 0.8, behavior: "smooth" });
+  });
+
+  projNext.addEventListener("click", function () {
+    projTrack.scrollBy({ left: projTrack.clientWidth * 0.8, behavior: "smooth" });
+  });
+
+  projTrack.addEventListener("scroll", updateProjButtons);
+  window.addEventListener("resize", updateProjButtons);
+  updateProjButtons();
 </script>
