@@ -1,0 +1,318 @@
+<title>Journalisation rsyslog — Marwan Goulit</title>
+<link rel="icon" href="img/logo.png" type="image/png">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #0d0f0d;
+    color: #cfd8d2;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.6;
+  }
+
+  a {
+    color: #33ff66;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: #ffffff;
+  }
+
+  .accent {
+    color: #33ff66;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  nav {
+    background-color: #131513;
+    border-bottom: 1px solid #26382c;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #33ff66;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .logo img {
+    height: 36px;
+    display: block;
+  }
+
+  .back-link {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid #33ff66;
+    color: #33ff66;
+    font-family: inherit;
+  }
+
+  .btn:hover {
+    background-color: #33ff66;
+    color: #0d0f0d;
+    text-decoration: none;
+  }
+
+  /* en-tete */
+  .page-head {
+    padding: 50px 0 10px;
+  }
+
+  .page-head p.pre {
+    color: #33ff66;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+  }
+
+  .page-head h1 {
+    font-size: 2.1rem;
+  }
+
+  /* blocs image + texte */
+  .feature-block {
+    display: flex;
+    gap: 36px;
+    align-items: flex-start;
+    padding: 40px 0;
+    border-top: 1px solid #1e241f;
+    flex-wrap: wrap;
+  }
+
+  .feature-block.reverse {
+    flex-direction: row-reverse;
+  }
+
+  .feature-img {
+    flex: 1 1 380px;
+    min-width: 260px;
+  }
+
+  .feature-img img {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+    border: 1px solid #26382c;
+  }
+
+  .feature-text {
+    flex: 1 1 260px;
+    min-width: 220px;
+  }
+
+  .feature-text h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .feature-text p {
+    color: #9fb3a6;
+  }
+
+  /* section pleine largeur */
+  .full-text {
+    padding: 20px 0 0;
+  }
+
+  .full-text h2 {
+    font-size: 1.5rem;
+    margin-bottom: 18px;
+  }
+
+  .full-text p {
+    max-width: 700px;
+    color: #9fb3a6;
+  }
+
+  /* comptes rendus */
+  .reports {
+    padding: 50px 0;
+    border-top: 1px solid #1e241f;
+  }
+
+  .reports > p {
+    color: #cfd8d2;
+    margin-bottom: 24px;
+    max-width: 600px;
+  }
+
+  .reports-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 600px) {
+    .reports-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .report-item {
+    display: grid;
+    grid-template-columns: minmax(210px, 1fr) auto;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .report-item .btn {
+    justify-self: start;
+  }
+
+  /* footer */
+  footer {
+    border-top: 1px solid #1e241f;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+  }
+
+  footer .footer-links a {
+    color: #cfd8d2;
+    padding: 8px 14px;
+    border: 1px solid #26382c;
+    border-radius: 6px;
+    transition:
+      border-color 0.3s ease,
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  footer .footer-links a:hover {
+    border-color: #33ff66;
+    background-color: #131513;
+    color: #33ff66;
+    text-decoration: none;
+  }
+
+  footer .copyright {
+    color: #5c6b61;
+    font-size: 0.85rem;
+  }
+</style>
+
+<nav>
+  <div class="container">
+    <a class="logo" href="index.html"
+      ><img src="img/logo.png" alt="Marwan Goulit" />Portfolio.marwan</a
+    >
+    <a class="back-link" href="index.html#projets">← retour aux projets</a>
+  </div>
+</nav>
+
+<style>
+  .steps { padding: 40px 0; border-top: 1px solid #1e241f; }
+  .steps h2 { font-size: 1.4rem; margin-bottom: 18px; }
+  .steps ol { padding-left: 22px; color: #9fb3a6; max-width: 720px; }
+  .steps li { margin-bottom: 10px; }
+  .steps li strong { color: #cfd8d2; }
+  pre.term { background: #131513; border: 1px solid #26382c; border-radius: 8px; padding: 16px; color: #33ff66; overflow-x: auto; font-size: 0.85rem; margin: 16px 0; max-width: 720px; }
+  .skills-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .skills-list span { border: 1px solid #26382c; border-radius: 6px; padding: 4px 10px; font-size: 0.85rem; color: #cfd8d2; }
+</style>
+<header class="page-head">
+  <div class="container">
+    <p class="pre">// projets/journalisation</p>
+    <h1><span class="accent">C</span>entralisation des journaux avec rsyslog</h1>
+  </div>
+</header>
+
+<div class="container">
+  <div class="feature-block">
+    <div class="feature-img">
+      <img src="img/rsyslog.svg" alt="Schéma : des machines envoient leurs journaux vers un serveur rsyslog central" />
+    </div>
+    <div class="feature-text">
+      <h3>Le contexte</h3>
+      <p>
+        Quand chaque machine garde ses journaux pour elle, un incident de
+        sécurité est difficile à repérer et facile à effacer. L'objectif de ce TP
+        était de centraliser les journaux de plusieurs machines Linux sur un
+        serveur unique, en suivant le guide de l'ANSSI sur la journalisation.
+      </p>
+      <div class="skills-list">
+        <span>Linux</span><span>rsyslog</span><span>Journalisation</span><span>Recommandations ANSSI</span><span>Cybersécurité</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="steps">
+    <h2>Ce que j'ai réalisé</h2>
+    <ol>
+      <li><strong>Étude du guide ANSSI</strong> sur la sécurité de l'architecture d'un système de journalisation.</li>
+      <li><strong>Configuration d'un serveur rsyslog</strong> pour recevoir les journaux envoyés par le réseau.</li>
+      <li><strong>Configuration des clients</strong> pour qu'ils transmettent leurs journaux au serveur central.</li>
+      <li><strong>Vérification</strong> de la bonne réception des journaux de chaque machine sur le serveur.</li>
+    </ol>
+  </div>
+
+  <div class="full-text">
+    <h2>Pourquoi c'est important</h2>
+    <p>
+      Les journaux sont la mémoire d'un système : connexions, erreurs, actions
+      des utilisateurs. Les centraliser permet de les consulter au même endroit,
+      de détecter plus vite une anomalie, et de les protéger même si une machine
+      est compromise. C'est la première brique de la supervision et de la
+      détection d'incidents en cybersécurité.
+    </p>
+  </div>
+  <br />
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-links">
+      <a href="index.html">← Retour à l'accueil</a>
+      <a href="projet-grapheneos.html">Smartphones GrapheneOS</a>
+      <a href="projet-nat.html">NAT / PAT &amp; routage</a>
+      <a href="projet-rsyslog.html">Journalisation rsyslog</a>
+      <a href="projet-glpi.html">Projet GLPI</a>
+      <a href="projet-veille.html">Veille Technologique</a>
+      <a href="projet-stage.html">Stage</a>
+    </div>
+    <p class="copyright">© 2026 Marwan Goulit</p>
+  </div>
+</footer>

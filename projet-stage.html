@@ -1,0 +1,550 @@
+<title>Stage — Marwan Goulit</title>
+<link rel="icon" href="img/logo.png" type="image/png">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #0d0f0d;
+    color: #cfd8d2;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.6;
+  }
+
+  a {
+    color: #33ff66;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: #ffffff;
+  }
+
+  .accent {
+    color: #33ff66;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  nav {
+    background-color: #131513;
+    border-bottom: 1px solid #26382c;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #33ff66;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .logo img {
+    height: 36px;
+    display: block;
+  }
+
+  .back-link {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid #33ff66;
+    color: #33ff66;
+    font-family: inherit;
+  }
+
+  .btn:hover {
+    background-color: #33ff66;
+    color: #0d0f0d;
+    text-decoration: none;
+  }
+
+  /* hero */
+  .hero-split {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 50px 0 30px;
+  }
+
+  .hero-split .col-title {
+    flex: 1 1 300px;
+  }
+
+  .hero-split .col-title p.pre {
+    color: #33ff66;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+  }
+
+  .hero-split .col-title h1 {
+    font-size: 2.1rem;
+  }
+
+  .hero-split .col-text {
+    flex: 1 1 300px;
+    color: #9fb3a6;
+  }
+
+  /* fiche entreprise */
+  .company-card {
+    border: 1px solid #26382c;
+    border-radius: 8px;
+    padding: 20px 24px;
+    background: #131513;
+    margin-bottom: 10px;
+  }
+
+  .company-card dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 16px;
+    font-size: 0.9rem;
+  }
+
+  .company-card dt {
+    color: #5c6b61;
+  }
+
+  .company-card dd {
+    color: #cfd8d2;
+  }
+
+  /* blocs semaine (image + texte) */
+  .feature-block {
+    display: flex;
+    gap: 36px;
+    align-items: flex-start;
+    padding: 40px 0;
+    border-top: 1px solid #1e241f;
+    flex-wrap: wrap;
+  }
+
+  .feature-block.reverse {
+    flex-direction: row-reverse;
+  }
+
+  .feature-img {
+    flex: 1 1 380px;
+    min-width: 260px;
+  }
+
+  .feature-img img {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+    border: 1px solid #26382c;
+  }
+
+  .feature-text {
+    flex: 1 1 260px;
+    min-width: 220px;
+  }
+
+  .week-tag {
+    display: inline-block;
+    color: #33ff66;
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+  }
+
+  .feature-text h3 {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+  }
+
+  .feature-text p {
+    color: #9fb3a6;
+    margin-bottom: 12px;
+  }
+
+  .feature-text ul {
+    color: #9fb3a6;
+    margin: 0 0 12px 18px;
+    padding: 0;
+  }
+
+  .feature-text li {
+    margin-bottom: 6px;
+  }
+
+  .callout {
+    border-left: 2px solid #33ff66;
+    padding: 10px 14px;
+    background: #131513;
+    font-size: 0.9rem;
+    color: #cfd8d2;
+  }
+
+  .callout strong {
+    color: #33ff66;
+  }
+
+  /* section pleine largeur */
+  .full-text {
+    padding: 40px 0;
+    border-top: 1px solid #1e241f;
+  }
+
+  .full-text h2 {
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+  }
+
+  .full-text p {
+    max-width: 750px;
+    color: #9fb3a6;
+  }
+
+  /* comptes rendus */
+  .reports {
+    padding: 50px 0;
+    border-top: 1px solid #1e241f;
+  }
+
+  .reports > p {
+    color: #cfd8d2;
+    margin-bottom: 24px;
+    max-width: 600px;
+  }
+
+  .reports-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 600px) {
+    .reports-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .report-item {
+    display: grid;
+    grid-template-columns: minmax(210px, 1fr) auto;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .report-item .btn {
+    justify-self: start;
+  }
+
+  /* footer */
+  footer {
+    border-top: 1px solid #1e241f;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+  }
+
+  footer .footer-links a {
+    color: #cfd8d2;
+    padding: 8px 14px;
+    border: 1px solid #26382c;
+    border-radius: 6px;
+    transition:
+      border-color 0.3s ease,
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  footer .footer-links a:hover {
+    border-color: #33ff66;
+    background-color: #131513;
+    color: #33ff66;
+    text-decoration: none;
+  }
+
+  footer .copyright {
+    color: #5c6b61;
+    font-size: 0.85rem;
+  }
+
+  /* lien type "chip" (meme style que les liens du footer) */
+  .chip-link {
+    display: inline-block;
+    color: #cfd8d2;
+    padding: 8px 14px;
+    border: 1px solid #26382c;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition:
+      border-color 0.3s ease,
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .chip-link:hover {
+    border-color: #33ff66;
+    background-color: #131513;
+    color: #33ff66;
+    text-decoration: none;
+  }
+</style>
+
+<nav>
+  <div class="container">
+    <a class="logo" href="index.html"
+      ><img src="img/logo.png" alt="Marwan Goulit" />Portfolio.marwan</a
+    >
+    <a class="back-link" href="index.html#projets">← retour aux projets</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="hero-split">
+    <div class="col-title">
+      <p class="pre">// projets/stage</p>
+      <h1>Stage — La Vague Bleue</h1>
+    </div>
+    <div class="col-text">
+      <p>
+        Création d'un site vitrine pour une poissonnerie, en
+        <span class="accent">HTML, CSS et JavaScript pur</span>, sans framework
+        ni CMS — un choix adapté à mon niveau de première année, pour un site
+        léger et facile à héberger.
+      </p>
+    </div>
+  </div>
+
+  <div class="company-card">
+    <dl>
+      <dt>Entreprise</dt>
+      <dd>La Vague Bleue — Poissonnerie</dd>
+      <dt>Adresse</dt>
+      <dd>2 Rue Jacques Babinet, 31100 Toulouse</dd>
+      <dt>Période</dt>
+      <dd>Du 25 mai au 25 juin 2026</dd>
+      <dt>Formation</dt>
+      <dd>BTS SIO 1ère année, option SLAM — Lycée Henri Matisse</dd>
+    </dl>
+  </div>
+
+  <div class="feature-block">
+    <div class="feature-img">
+      <br />
+      <br />
+      <br />
+      <br />
+      <img src="img/structure.png" alt="Semaine 1 — structure du site" />
+    </div>
+    <div class="feature-text">
+      <span class="week-tag">Semaine 1 — 25 au 31 mai</span>
+      <h3>Mise en place du projet et structure HTML de base</h3>
+      <p>
+        Après avoir échangé avec le gérant sur ses attentes (un site simple et
+        propre qui donne envie de venir), j'ai créé les 3 fichiers de base et
+        écrit la structure HTML complète.
+      </p>
+      <ul>
+        <li>Navbar avec liens ancres vers chaque section</li>
+        <li>
+          Google Fonts : Playfair Display pour les titres, Inter pour le texte
+        </li>
+        <li>Contenu réel du client intégré (horaires, adresse, produits)</li>
+        <li>Premier CSS : palette bleue, typographie, mise en page générale</li>
+        <li>Carte Google Maps intégrée en iframe</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="feature-block reverse">
+    <div class="feature-img">
+      <br />
+      <br />
+      <br />
+      <br />
+      <img src="img/semaine2.png" alt="Semaine 2 — animations JavaScript" />
+    </div>
+    <div class="feature-text">
+      <span class="week-tag">Semaine 2 — 1 au 7 juin</span>
+      <h3>Ajout du JavaScript et des animations</h3>
+      <p>
+        Le fichier <code>script.js</code>, encore vide en fin de semaine 1, a
+        été rempli progressivement en testant chaque effet dans le navigateur
+        avant de passer au suivant.
+      </p>
+      <ul>
+        <li>Barre de progression de lecture en haut de page</li>
+        <li>Effet typewriter sur le titre du hero</li>
+        <li>
+          Navbar qui devient opaque au scroll, lien actif selon la section
+          visible
+        </li>
+        <li>Bulles animées et effet parallaxe dans le hero</li>
+        <li>Compteurs animés et apparition progressive des cartes au scroll</li>
+        <li>Effet 3D au survol des cartes produits, bouton retour en haut</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="feature-block">
+    <div class="feature-img">
+      <br />
+      <br />
+      <br />
+      <img src="img/avis.png" alt="Semaine 3 — réseaux sociaux et avis" />
+    </div>
+    <div class="feature-text">
+      <span class="week-tag">Semaine 3 — 8 au 14 juin</span>
+      <h3>Réseaux sociaux, avis Google et formulaire de commentaire</h3>
+      <p>
+        Ajout de tout ce qui concerne la communication de la poissonnerie :
+        photo réelle de la boutique en fond de hero, bouton Facebook, avis
+        clients et un formulaire de commentaire avec notation par étoiles
+        cliquables, validé en JavaScript.
+      </p>
+      <div class="callout">
+        <strong>Problème rencontré :</strong> l'embed TikTok officiel affichait
+        un écran noir. Plutôt que de bloquer sur ce problème, j'ai créé une
+        carte HTML/CSS personnalisée qui imite le style TikTok et redirige vers
+        le profil au clic.
+      </div>
+    </div>
+  </div>
+
+  <div class="feature-block reverse">
+    <div class="feature-img">
+      <br />
+      <br />
+      <img src="img/etalage.png" alt="Semaine 4 — galerie Notre Étalage" />
+    </div>
+    <div class="feature-text">
+      <span class="week-tag">Semaine 4 — 15 au 21 juin</span>
+      <h3>Section "Notre Étalage" et intégration des photos produits</h3>
+      <p>
+        Création d'une galerie de 15 vraies photos fournies par le client,
+        organisée en grille CSS de 6 colonnes avec une bannière panoramique en
+        en-tête et un effet de zoom au survol.
+      </p>
+      <div class="callout">
+        <strong>Difficulté rencontrée :</strong> éviter les trous dans la
+        grille. La solution a été d'alterner toujours 2 grandes cartes (<code
+          >grid-column: span 3</code
+        >) puis 3 petites (<code>span 2</code>), pour que chaque rangée totalise
+        6 colonnes.
+      </div>
+    </div>
+  </div>
+
+  <div class="full-text">
+    <p style="margin-bottom: 14px">
+      <strong class="accent">Rendu final :</strong> le site fini, prêt à être
+      présenté au client.
+    </p>
+    <img
+      src="img/rendufinal.png"
+      alt="Rendu final du site La Vague Bleue"
+      style="width: 100%; border-radius: 8px; border: 1px solid #26382c"
+    />
+    <a
+      href="https://lavaguebleue.netlify.app"
+      class="chip-link"
+      style="
+        margin-top: 16px;
+        display: block;
+        width: max-content;
+        margin-left: auto;
+        margin-right: auto;
+      "
+      >Visiter le site</a
+    >
+  </div>
+
+  <div class="full-text">
+    <h2>Ce que ce stage m'a apporté</h2>
+    <p>
+      Ce projet m'a permis de suivre un site de A à Z, de la structure HTML de
+      base jusqu'à une expérience complète avec animations, formulaire
+      interactif et galerie produits — tout en gérant les échanges avec un vrai
+      client et en trouvant des solutions concrètes aux problèmes rencontrés
+      (embed cassé, grille avec des trous) plutôt que de rester bloqué.
+    </p>
+  </div>
+
+  <div class="reports">
+    <p>
+      Retrouvez mes 4 rapports de stage hebdomadaires ci-dessous, disponibles en
+      téléchargement :
+    </p>
+    <div class="reports-grid">
+      <div class="report-item">
+        <a href="docs/rapport-stage-semaine-1.pdf">Rapport — Semaine 1 :</a>
+        <a href="docs/rapport-stage-semaine-1.pdf" class="btn" download
+          >Télécharger</a
+        >
+      </div>
+      <div class="report-item">
+        <a href="docs/rapport-stage-semaine-2.pdf">Rapport — Semaine 2 :</a>
+        <a href="docs/rapport-stage-semaine-2.pdf" class="btn" download
+          >Télécharger</a
+        >
+      </div>
+      <div class="report-item">
+        <a href="docs/rapport-stage-semaine-3.pdf">Rapport — Semaine 3 :</a>
+        <a href="docs/rapport-stage-semaine-3.pdf" class="btn" download
+          >Télécharger</a
+        >
+      </div>
+      <div class="report-item">
+        <a href="docs/rapport-stage-semaine-4.pdf">Rapport — Semaine 4 :</a>
+        <a href="docs/rapport-stage-semaine-4.pdf" class="btn" download
+          >Télécharger</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-links">
+      <a href="index.html">← Retour à l'accueil</a>
+      <a href="projet-pirates.html">Site Bar pour pirates</a>
+      <a href="projet-glpi.html">Projet GLPI</a>
+      <a href="projet-veille.html">Veille Technologique</a>
+      <a href="projet-prestashop.html">Prestashop</a>
+    </div>
+    <p class="copyright">© 2026 Marwan Goulit</p>
+  </div>
+</footer>

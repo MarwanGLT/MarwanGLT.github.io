@@ -1,0 +1,638 @@
+<title>Prestashop — Marwan Goulit</title>
+<link rel="icon" href="img/logo.png" type="image/png" />
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #0d0f0d;
+    color: #cfd8d2;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.6;
+  }
+
+  a {
+    color: #33ff66;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: #ffffff;
+  }
+
+  .accent {
+    color: #33ff66;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  nav {
+    background-color: #131513;
+    border-bottom: 1px solid #26382c;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #33ff66;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .logo img {
+    height: 36px;
+    display: block;
+  }
+
+  .back-link {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid #33ff66;
+    color: #33ff66;
+    font-family: inherit;
+  }
+
+  .btn:hover {
+    background-color: #33ff66;
+    color: #0d0f0d;
+    text-decoration: none;
+  }
+
+  /* hero */
+  .hero-split {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 50px 0 30px;
+  }
+
+  .hero-split .col-title {
+    flex: 1 1 300px;
+  }
+
+  .hero-split .col-title p.pre {
+    color: #33ff66;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+  }
+
+  .hero-split .col-title h1 {
+    font-size: 2.1rem;
+  }
+
+  .hero-split .col-text {
+    flex: 1 1 300px;
+    color: #9fb3a6;
+  }
+
+  /* fiche entreprise */
+  .company-card {
+    border: 1px solid #26382c;
+    border-radius: 8px;
+    padding: 20px 24px;
+    background: #131513;
+    margin-bottom: 10px;
+  }
+
+  .company-card dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 16px;
+    font-size: 0.9rem;
+  }
+
+  .company-card dt {
+    color: #5c6b61;
+  }
+
+  .company-card dd {
+    color: #cfd8d2;
+  }
+
+  /* blocs image + texte */
+  .feature-block {
+    display: flex;
+    gap: 36px;
+    align-items: flex-start;
+    padding: 40px 0;
+    border-top: 1px solid #1e241f;
+    flex-wrap: wrap;
+  }
+
+  .feature-block.reverse {
+    flex-direction: row-reverse;
+  }
+
+  .feature-img {
+    flex: 1 1 380px;
+    min-width: 260px;
+  }
+
+  .feature-img img {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+    border: 1px solid #26382c;
+  }
+
+  .feature-text {
+    flex: 1 1 260px;
+    min-width: 220px;
+  }
+
+  .feature-text h3 {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+  }
+
+  .feature-text p {
+    color: #9fb3a6;
+    margin-bottom: 12px;
+  }
+
+  .callout {
+    border-left: 2px solid #33ff66;
+    padding: 10px 14px;
+    background: #131513;
+    font-size: 0.9rem;
+    color: #cfd8d2;
+  }
+
+  .callout strong {
+    color: #33ff66;
+  }
+
+  /* section pleine largeur */
+  .full-text {
+    padding: 40px 0;
+    border-top: 1px solid #1e241f;
+  }
+
+  .full-text h2 {
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+  }
+
+  .full-text p {
+    max-width: 750px;
+    color: #9fb3a6;
+  }
+
+  /* grille categories */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 700px) {
+    .cat-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .cat-card {
+    border: 1px solid #26382c;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #131513;
+  }
+
+  .cat-card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid #26382c;
+  }
+
+  .cat-card .cat-body {
+    padding: 16px;
+  }
+
+  .cat-card h3 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .cat-card p {
+    color: #9fb3a6;
+    font-size: 0.9rem;
+  }
+
+  /* tableau seo */
+  .seo-table-wrap {
+    overflow-x: auto;
+    margin-top: 18px;
+  }
+
+  table.seo-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    min-width: 560px;
+  }
+
+  table.seo-table th {
+    text-align: left;
+    color: #33ff66;
+    padding: 8px 10px;
+    border-bottom: 1px solid #26382c;
+    font-weight: bold;
+  }
+
+  table.seo-table td {
+    padding: 10px 10px;
+    border-bottom: 1px solid #1e241f;
+    color: #9fb3a6;
+    vertical-align: top;
+  }
+
+  .keyword-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .keyword-tags span {
+    border: 1px solid #26382c;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    color: #cfd8d2;
+  }
+
+  /* slider avant / apres */
+  .ba-slider {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #26382c;
+  }
+
+  .ba-slider img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ba-before {
+    clip-path: inset(0 50% 0 0);
+  }
+
+  .ba-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: #33ff66;
+    pointer-events: none;
+  }
+
+  .ba-handle::after {
+    content: "‹ ›";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #0d0f0d;
+    border: 1px solid #33ff66;
+    color: #33ff66;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    letter-spacing: -1px;
+  }
+
+  .ba-range {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+  }
+
+  .ba-label {
+    position: absolute;
+    bottom: 8px;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    background: rgba(0, 0, 0, 0.65);
+    color: #fff;
+    border-radius: 3px;
+    pointer-events: none;
+  }
+
+  .ba-label.before {
+    left: 8px;
+  }
+
+  .ba-label.after {
+    right: 8px;
+  }
+
+  /* comptes rendus */
+  .reports {
+    padding: 50px 0;
+    border-top: 1px solid #1e241f;
+  }
+
+  .reports > p {
+    color: #cfd8d2;
+    margin-bottom: 24px;
+    max-width: 600px;
+  }
+
+  .reports-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 600px) {
+    .reports-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .report-item {
+    display: grid;
+    grid-template-columns: minmax(210px, 1fr) auto;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .report-item .btn {
+    justify-self: start;
+  }
+
+  /* footer */
+  footer {
+    border-top: 1px solid #1e241f;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+  }
+
+  footer .footer-links a {
+    color: #cfd8d2;
+    padding: 8px 14px;
+    border: 1px solid #26382c;
+    border-radius: 6px;
+    transition:
+      border-color 0.3s ease,
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  footer .footer-links a:hover {
+    border-color: #33ff66;
+    background-color: #131513;
+    color: #33ff66;
+    text-decoration: none;
+  }
+
+  footer .copyright {
+    color: #5c6b61;
+    font-size: 0.85rem;
+  }
+</style>
+
+<nav>
+  <div class="container">
+    <a class="logo" href="index.html"
+      ><img src="img/logo.png" alt="Marwan Goulit" />Portfolio.marwan</a
+    >
+    <a class="back-link" href="index.html#projets">← retour aux projets</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="hero-split">
+    <div class="col-title">
+      <p class="pre">// projets/prestashop</p>
+      <h1>Prestashop — CGC Fitness</h1>
+    </div>
+    <div class="col-text">
+      <p>
+        Conception d'une boutique en ligne
+        <span class="accent">Prestashop</span>
+        pour CGC Fitness, une marque de vêtements de sport (running, sweats,
+        survêtements) que nous avons imaginée pour cet exercice, avec un
+        cahier des charges rédigé de A à Z : catégories de produits,
+        sélection de la gamme, référencement SEO et refonte graphique
+        complète.
+      </p>
+    </div>
+  </div>
+
+  <div class="company-card">
+    <dl>
+      <dt>Entreprise fictive</dt>
+      <dd>CGC Fitness — vêtements de sport en ligne</dd>
+      <dt>Cible</dt>
+      <dd>Particuliers sportifs, 25-35 ans</dd>
+      <dt>Charte graphique</dt>
+      <dd>Blanc #ffffff, bleu sport #1B365D, gris clair #f3f3f3</dd>
+    </dl>
+  </div>
+
+  <div class="feature-block">
+    <div class="feature-img">
+      <img src="img/vetement.png" alt="Sélection produits" />
+    </div>
+    <div class="feature-text">
+      <h3>Sélection de la gamme produits</h3>
+      <p>
+        Le choix des articles mis en avant s'appuie sur trois piliers : la
+        notoriété (ensemble Nike), la polyvalence urbaine (modèle Black Sport)
+        et la performance technique (sweat outdoor), pour couvrir les besoins du
+        runner débutant comme confirmé.
+      </p>
+      <div class="callout">
+        <strong>Stratégie rentabilité :</strong> un prix psychologique cohérent
+        (144€) et une identité visuelle forte, pensés pour maximiser le panier
+        moyen et faciliter les ventes.
+      </div>
+    </div>
+  </div>
+
+  <div class="full-text">
+    <h2>Travail SEO</h2>
+    <p>
+      Objectif : positionner la boutique sur des requêtes à forte intention
+      d'achat liées au running, en passant d'une structure générique à un
+      catalogue spécialisé.
+    </p>
+    <div class="keyword-tags">
+      <span>Ensemble Nike Running Homme</span>
+      <span>Survêtement Nike</span>
+      <span>Vêtements de fitness homme</span>
+      <span>Accessoires sport extérieur</span>
+      <span>Tenue running premium</span>
+      <span>Équipement fitness haute performance</span>
+    </div>
+    <div class="seo-table-wrap">
+      <table class="seo-table">
+        <thead>
+          <tr>
+            <th>Élément SEO</th>
+            <th>Action effectuée</th>
+            <th>Impact attendu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Balises Title</td>
+            <td>Titres uniques incluant le mot-clé principal</td>
+            <td>Amélioration du taux de clic (CTR) sur Google</td>
+          </tr>
+          <tr>
+            <td>Meta descriptions</td>
+            <td>
+              Textes d'appel à l'action mettant en avant qualité et livraison
+            </td>
+            <td>Incitation à la visite, baisse du taux de rebond</td>
+          </tr>
+          <tr>
+            <td>Balises ALT</td>
+            <td>Description textuelle de chaque image produit</td>
+            <td>Référencement sur Google Images</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top: 20px">
+      Structure en H1/H2 par fiche produit, migration des produits vers des
+      catégories dédiées, création d'un blog "Conseils Running" et optimisation
+      du poids des images pour les Core Web Vitals.
+    </p>
+  </div>
+
+  <div class="feature-block reverse">
+    <div class="feature-img">
+      <div class="ba-slider">
+        <img class="ba-after" src="img/apress.png" alt="Version après" />
+        <img
+          class="ba-before"
+          id="baBefore"
+          src="img/avantt.png"
+          alt="Version avant"
+        />
+        <span class="ba-label before">Avant</span>
+        <span class="ba-label after">Après</span>
+        <div class="ba-handle" id="baHandle"></div>
+        <input
+          type="range"
+          min="0"
+          max="100"
+          value="50"
+          class="ba-range"
+          id="baRange"
+        />
+      </div>
+    </div>
+    <div class="feature-text">
+      <h3>Améliorations : avant / après</h3>
+      <p>
+        Le site est passé de visuels par défaut et de textes génériques à une
+        charte graphique "Sport & Performance" assumée : bleu profond associé à
+        un vert néon, pour évoquer à la fois la technicité et l'énergie du
+        running.
+      </p>
+      <p>
+        Faites glisser le curseur pour comparer la version initiale et la
+        version finalisée du site.
+      </p>
+    </div>
+  </div>
+
+  <div class="reports">
+    <p>Retrouvez le rapport complet du projet ci-dessous :</p>
+    <div class="reports-grid">
+      <div class="report-item">
+        <a href="docs/rapport-prestashop.pdf">Rapport — Projet Prestashop :</a>
+        <a href="docs/rapport-prestashop.pdf" class="btn" download
+          >Télécharger</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-links">
+      <a href="index.html">← Retour à l'accueil</a>
+      <a href="projet-pirates.html">Site Bar pour pirates</a>
+      <a href="projet-glpi.html">Projet GLPI</a>
+      <a href="projet-veille.html">Veille Technologique</a>
+      <a href="projet-stage.html">Stage</a>
+    </div>
+    <p class="copyright">© 2026 Marwan Goulit</p>
+  </div>
+</footer>
+
+<script>
+  var baRange = document.getElementById("baRange");
+  var baBefore = document.getElementById("baBefore");
+  var baHandle = document.getElementById("baHandle");
+
+  baRange.addEventListener("input", function () {
+    var v = baRange.value;
+    baBefore.style.clipPath = "inset(0 " + (100 - v) + "% 0 0)";
+    baHandle.style.left = v + "%";
+  });
+</script>

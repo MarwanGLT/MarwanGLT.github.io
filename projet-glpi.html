@@ -1,0 +1,370 @@
+<title>Projet GLPI — Marwan Goulit</title>
+<link rel="icon" href="img/logo.png" type="image/png">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #0d0f0d;
+    color: #cfd8d2;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.6;
+  }
+
+  a {
+    color: #33ff66;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: #ffffff;
+  }
+
+  .accent {
+    color: #33ff66;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  nav {
+    background-color: #131513;
+    border-bottom: 1px solid #26382c;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #33ff66;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .logo img {
+    height: 36px;
+    display: block;
+  }
+
+  .back-link {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid #33ff66;
+    color: #33ff66;
+    font-family: inherit;
+  }
+
+  .btn:hover {
+    background-color: #33ff66;
+    color: #0d0f0d;
+    text-decoration: none;
+  }
+
+  /* en-tete */
+  .page-head {
+    padding: 50px 0 10px;
+  }
+
+  .page-head p.pre {
+    color: #33ff66;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+  }
+
+  .page-head h1 {
+    font-size: 2.1rem;
+  }
+
+  /* blocs image + texte */
+  .feature-block {
+    display: flex;
+    gap: 36px;
+    align-items: flex-start;
+    padding: 40px 0;
+    border-top: 1px solid #1e241f;
+    flex-wrap: wrap;
+  }
+
+  .feature-block.reverse {
+    flex-direction: row-reverse;
+  }
+
+  .feature-img {
+    flex: 1 1 380px;
+    min-width: 260px;
+  }
+
+  .feature-img img {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+    border: 1px solid #26382c;
+  }
+
+  .feature-text {
+    flex: 1 1 260px;
+    min-width: 220px;
+  }
+
+  .feature-text h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .feature-text p {
+    color: #9fb3a6;
+  }
+
+  /* section pleine largeur */
+  .full-text {
+    padding: 20px 0 0;
+  }
+
+  .full-text h2 {
+    font-size: 1.5rem;
+    margin-bottom: 18px;
+  }
+
+  .full-text p {
+    max-width: 700px;
+    color: #9fb3a6;
+  }
+
+  /* comptes rendus */
+  .reports {
+    padding: 50px 0;
+    border-top: 1px solid #1e241f;
+  }
+
+  .reports > p {
+    color: #cfd8d2;
+    margin-bottom: 24px;
+    max-width: 600px;
+  }
+
+  .reports-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 600px) {
+    .reports-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .report-item {
+    display: grid;
+    grid-template-columns: minmax(210px, 1fr) auto;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .report-item .btn {
+    justify-self: start;
+  }
+
+  /* footer */
+  footer {
+    border-top: 1px solid #1e241f;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+  }
+
+  footer .footer-links a {
+    color: #cfd8d2;
+    padding: 8px 14px;
+    border: 1px solid #26382c;
+    border-radius: 6px;
+    transition:
+      border-color 0.3s ease,
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  footer .footer-links a:hover {
+    border-color: #33ff66;
+    background-color: #131513;
+    color: #33ff66;
+    text-decoration: none;
+  }
+
+  footer .copyright {
+    color: #5c6b61;
+    font-size: 0.85rem;
+  }
+</style>
+
+<nav>
+  <div class="container">
+    <a class="logo" href="index.html"
+      ><img src="img/logo.png" alt="Marwan Goulit" />Portfolio.marwan</a
+    >
+    <a class="back-link" href="index.html#projets">← retour aux projets</a>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <p class="pre">// projets/glpi</p>
+    <h1>
+      <span class="accent">G</span>estionnaire <span class="accent">L</span>ibre
+      de <span class="accent">P</span>arc
+      <span class="accent">I</span>nformatique
+    </h1>
+  </div>
+</header>
+
+<div class="container">
+  <div class="feature-block">
+    <div class="feature-img">
+      <img src="img/glpi_screenshot.png" alt="Tableau de bord GLPI" />
+    </div>
+    <div class="feature-text">
+      <br />
+      <br />
+      <p>
+        Au cours de l'année, nous avons travaillé sur quatre projets en réseau
+        autour de GLPI, ce qui nous a permis de découvrir cet outil de gestion
+        de parc informatique et de support. À travers ces projets, nous avons
+        appris à l'installer, le configurer et l'utiliser dans un environnement
+        réseau, tout en comprenant son rôle dans la gestion des incidents, des
+        utilisateurs et du matériel.
+      </p>
+    </div>
+  </div>
+
+  <div class="full-text">
+    <h2>À quoi sert le système <span class="accent">GLPI</span> ?</h2>
+    <p>
+      GLPI est un outil qui sert à gérer le matériel informatique et les
+      problèmes techniques dans une entreprise ou une organisation. Il permet de
+      faire l'inventaire des ordinateurs, imprimantes et logiciels, mais aussi
+      de gérer les demandes d'assistance grâce à un système de tickets. Lors de
+      nos projets, nous avons découvert que GLPI aide à mieux organiser le
+      travail des techniciens, à suivre les pannes et à assurer un bon
+      fonctionnement du réseau informatique.
+    </p>
+  </div>
+  <br />
+  <div class="feature-block reverse">
+    <img src="img/glll.png" alt="Logo GLPI" />
+    <div class="feature-text">
+      <br />
+      <h3>L'outil GLPI</h3>
+      <p>
+        Un logiciel libre, pensé pour centraliser la gestion du parc
+        informatique et du support technique au même endroit.
+      </p>
+    </div>
+  </div>
+
+  <div class="reports">
+    <p>
+      Vous retrouverez mes comptes rendus de mes différents projets GLPI
+      ci-dessous, disponibles en téléchargement :
+    </p>
+    <div class="reports-grid">
+      <div class="report-item">
+        <a
+          href="https://portfoliomarwan.wordpress.com/wp-content/uploads/2026/02/glpi.pdf"
+          >Compte Rendu GLPI :</a
+        >
+        <a
+          href="https://portfoliomarwan.wordpress.com/wp-content/uploads/2026/02/glpi.pdf"
+          class="btn"
+          download
+          >Télécharger</a
+        >
+      </div>
+      <div class="report-item">
+        <a
+          href="https://portfoliomarwan.wordpress.com/wp-content/uploads/2026/02/biyack-_-goulit.pdf"
+          >Plan de Nommage entreprise :</a
+        >
+        <a
+          href="https://portfoliomarwan.wordpress.com/wp-content/uploads/2026/02/biyack-_-goulit.pdf"
+          class="btn"
+          download
+          >Télécharger</a
+        >
+      </div>
+      <div class="report-item">
+        <a
+          href="https://portfoliomarwan.wordpress.com/wp-content/uploads/2026/02/biyack_goulit_glpi_activite1.pdf"
+          >Activité GLPI :</a
+        >
+        <a
+          href="https://portfoliomarwan.wordpress.com/wp-content/uploads/2026/02/biyack_goulit_glpi_activite1.pdf"
+          class="btn"
+          download
+          >Télécharger</a
+        >
+      </div>
+      <div class="report-item">
+        <a
+          href="https://portfoliomarwan.wordpress.com/wp-content/uploads/2026/02/ticket-goulit_marwan.pdf"
+          >Gestion de Tickets :</a
+        >
+        <a
+          href="https://portfoliomarwan.wordpress.com/wp-content/uploads/2026/02/ticket-goulit_marwan.pdf"
+          class="btn"
+          download
+          >Télécharger</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-links">
+      <a href="index.html">← Retour à l'accueil</a>
+      <a href="projet-pirates.html">Site Bar pour pirates</a>
+      <a href="projet-veille.html">Veille Technologique</a>
+      <a href="projet-stage.html">Stage</a>
+      <a href="projet-prestashop.html">Prestashop</a>
+    </div>
+    <p class="copyright">© 2026 Marwan Goulit</p>
+  </div>
+</footer>

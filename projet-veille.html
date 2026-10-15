@@ -1,0 +1,439 @@
+<title>Veille Technologique — Marwan Goulit</title>
+<link rel="icon" href="img/logo.png" type="image/png">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #0d0f0d;
+    color: #cfd8d2;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.6;
+  }
+
+  a {
+    color: #33ff66;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: #ffffff;
+  }
+
+  .accent {
+    color: #33ff66;
+  }
+
+  .danger {
+    color: #ff6b6b;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  nav {
+    background-color: #131513;
+    border-bottom: 1px solid #26382c;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #33ff66;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .logo img {
+    height: 36px;
+    display: block;
+  }
+
+  .back-link {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid #33ff66;
+    color: #33ff66;
+    font-family: inherit;
+  }
+
+  .btn:hover {
+    background-color: #33ff66;
+    color: #0d0f0d;
+    text-decoration: none;
+  }
+
+  /* en-tete */
+  .page-head {
+    padding: 50px 0 10px;
+  }
+
+  .page-head p.pre {
+    color: #33ff66;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+  }
+
+  .page-head h1 {
+    font-size: 2.1rem;
+  }
+
+  /* blocs image + texte */
+  .feature-block {
+    display: flex;
+    gap: 36px;
+    align-items: flex-start;
+    padding: 40px 0;
+    border-top: 1px solid #1e241f;
+    flex-wrap: wrap;
+  }
+
+  .feature-block.reverse {
+    flex-direction: row-reverse;
+  }
+
+  .feature-img {
+    flex: 1 1 380px;
+    min-width: 260px;
+  }
+
+  .feature-img img {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+    border: 1px solid #26382c;
+  }
+
+  .feature-text {
+    flex: 1 1 260px;
+    min-width: 220px;
+  }
+
+  .feature-text h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .feature-text p {
+    color: #9fb3a6;
+  }
+
+  /* section pleine largeur */
+  .full-text {
+    padding: 20px 0;
+    border-top: 1px solid #1e241f;
+  }
+
+  .full-text h2 {
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+
+  .full-text p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: #9fb3a6;
+    text-align: center;
+  }
+
+  /* grille d'articles de veille */
+  .articles {
+    padding: 40px 0;
+    border-top: 1px solid #1e241f;
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+  }
+
+  @media (max-width: 700px) {
+    .articles-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .article-card img {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+    border: 1px solid #26382c;
+    margin-bottom: 16px;
+  }
+
+  .article-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+  }
+
+  .article-date {
+    display: block;
+    color: #5c6b61;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+
+  .article-card p {
+    color: #9fb3a6;
+    margin-bottom: 16px;
+  }
+
+  /* comptes rendus (reprend le style des autres pages projet) */
+  .reports {
+    padding: 50px 0;
+    border-top: 1px solid #1e241f;
+  }
+
+  .reports > p {
+    color: #cfd8d2;
+    margin-bottom: 24px;
+    max-width: 600px;
+  }
+
+  /* footer */
+  footer {
+    border-top: 1px solid #1e241f;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+  }
+
+  footer .footer-links a {
+    color: #cfd8d2;
+    padding: 8px 14px;
+    border: 1px solid #26382c;
+    border-radius: 6px;
+    transition:
+      border-color 0.3s ease,
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  footer .footer-links a:hover {
+    border-color: #33ff66;
+    background-color: #131513;
+    color: #33ff66;
+    text-decoration: none;
+  }
+
+  footer .copyright {
+    color: #5c6b61;
+    font-size: 0.85rem;
+  }
+</style>
+
+<nav>
+  <div class="container">
+    <a class="logo" href="index.html"
+      ><img src="img/logo.png" alt="Marwan Goulit" />Portfolio.marwan</a
+    >
+    <a class="back-link" href="index.html#projets">← retour aux projets</a>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <p class="pre">// projets/veille</p>
+    <h1>Veille technologique</h1>
+  </div>
+</header>
+
+<div class="container">
+  <div class="feature-block">
+    <div class="feature-img">
+      <br />
+      <br />
+      <img
+        src="img/fuite.png"
+        alt="Fuites de données et protection des informations"
+      />
+    </div>
+    <div class="feature-text">
+      <h3>Les fuites de données et la protection des informations</h3>
+      <p>
+        <span class="accent">Les fuites de données</span> correspondent à la
+        divulgation ou au vol d'informations sensibles, comme des mots de passe,
+        des données personnelles ou professionnelles. Elles peuvent être causées
+        par des attaques informatiques, des erreurs humaines ou des failles de
+        sécurité dans les systèmes informatiques. Cette veille technologique
+        consiste à suivre les fuites de données récentes, comprendre leurs
+        causes et analyser les solutions mises en place pour les éviter.
+      </p>
+    </div>
+  </div>
+
+  <div class="articles">
+    <div class="articles-grid">
+      <div class="article-card">
+        <img src="img/Data-Breach.png" alt="Fuite de données" />
+        <h3><span class="danger">Fuite</span> de données</h3>
+        <span class="article-date">05 janv. 2026 — 16h07</span>
+        <p>
+          Les fuites de données sont devenues l'un des risques majeurs du
+          numérique : cyberattaques, erreurs humaines et failles de sécurité
+          exposent chaque jour des millions de données personnelles et
+          professionnelles.
+        </p>
+        <a
+          href="https://www.lemonde.fr/pixels/article/2026/01/05/l-office-francais-de-l-immigration-et-de-l-integration-victime-d-une-fuite-de-donnees_6660632_4408996.html?search-type=classic&ise_click_rank=1"
+          class="btn"
+          >Lire l'article</a
+        >
+      </div>
+
+      <div class="article-card">
+        <img src="img/attaque.png" alt="Cyberattaques en France" />
+        <h3>
+          <span class="danger">Cyberattaques</span> : la France confrontée
+        </h3>
+        <span class="article-date">02 fév. 2026 — 14h20</span>
+        <p>
+          Les cyberattaques se multiplient en France, exposant chaque jour des
+          données sensibles. Entre piratages, rançongiciels et failles de
+          sécurité, les conséquences peuvent être graves pour les citoyens comme
+          pour les organisations.
+        </p>
+        <a
+          href="https://www.lejdd.fr/Societe/cyberattaques-la-france-confrontee-a-une-multiplication-des-fuites-de-donnees-166432"
+          class="btn"
+          >Lire l'article</a
+        >
+      </div>
+
+      <div class="article-card">
+        <img src="img/fr.png" alt="Comment se protéger et bien réagir" />
+        <h3>
+          <span class="danger">Fuites</span> de données : comment se
+          <span class="accent">protéger</span> et
+          <span class="accent">bien réagir</span>
+        </h3>
+        <span class="article-date">22 janv. 2026 — 12h34</span>
+        <p>
+          Les fuites de données touchent aujourd'hui tout le monde. Savoir
+          anticiper les risques et réagir rapidement peut faire toute la
+          différence face aux cybermenaces.
+        </p>
+        <a
+          href="https://www.lockself.com/blog/fuites-donnees-proteger-reagir"
+          class="btn"
+          >Se renseigner</a
+        >
+      </div>
+
+      <div class="article-card">
+        <h3>
+          <span class="accent">Assistance et prévention</span> en cybersécurité
+        </h3>
+        <span class="article-date">Pour particuliers et professionnels</span>
+        <p>
+          Face à la multiplication des cyberattaques, comprendre les risques,
+          mettre en place de bonnes pratiques et réagir rapidement en cas de
+          problème.
+        </p>
+        <a href="https://www.cybermalveillance.gouv.fr" class="btn"
+          >Se renseigner</a
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="full-text">
+    <h2>Ce que cette veille m'apporte</h2>
+    <p>
+      Cette veille technologique me permet de mieux comprendre l'importance de
+      la sécurité des données et les risques liés aux fuites d'informations,
+      tout en suivant l'évolution des menaces et des solutions mises en place
+      dans le domaine informatique.
+    </p>
+  </div>
+
+  <div class="feature-block reverse">
+    <div class="feature-img">
+      <img src="img/alert.png" alt="Google Alerts" />
+    </div>
+    <div class="feature-text">
+      <h3>Un système de veille automatisé</h3>
+      <p>
+        Afin de maintenir une expertise constante sur les menaces émergentes,
+        j'ai mis en place un système de veille automatisé via Google Alerts.
+        Cette approche me permet de surveiller en temps réel les incidents
+        critiques, les fuites de bases de données et les vulnérabilités majeures
+        à l'échelle mondiale. En ciblant des mots-clés spécifiques et des
+        opérateurs de recherche avancés, j'analyse les tendances d'attaques pour
+        mieux anticiper les risques et comprendre les vecteurs d'exposition des
+        données actuels.
+      </p>
+    </div>
+  </div>
+
+  <div class="feature-block">
+    <div class="feature-img">
+      <img src="img/acitvealert.png" alt="Liste de mes alertes Google Alerts" />
+    </div>
+    <div class="feature-text">
+      <br />
+      <br />
+      <br />
+      <br />
+      <h3>Mes alertes actives</h3>
+      <p>
+        Une sélection de mots-clés ciblés (vulnérabilités API, mauvaises
+        configurations cloud, CVE critiques, fuites de bases de données...) pour
+        suivre l'actualité de la cybersécurité au fil de l'eau.
+      </p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-links">
+      <a href="index.html">← Retour à l'accueil</a>
+      <a href="projet-pirates.html">Site Bar pour pirates</a>
+      <a href="projet-glpi.html">Projet GLPI</a>
+      <a href="projet-stage.html">Stage</a>
+      <a href="projet-prestashop.html">Prestashop</a>
+    </div>
+    <p class="copyright">© 2026 Marwan Goulit</p>
+  </div>
+</footer>
